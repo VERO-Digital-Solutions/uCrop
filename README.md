@@ -1,4 +1,4 @@
-## Features
+## Changes
 
 * Left align tool bar title instead of centering it
 * Renamed "Edit Photo" to "Prepare photo"
