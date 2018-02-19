@@ -2,6 +2,7 @@
 
 * Left align tool bar title instead of centering it
 * Renamed "Edit Photo" to "Prepare photo"
+* Fix exif bug on Samsung devices
 
 #### [How We Created uCrop](https://yalantis.com/blog/how-we-created-ucrop-our-own-image-cropping-library-for-android/)
 #### Check this [project on Dribbble](https://dribbble.com/shots/2484752-uCrop-Image-Cropping-Library)
@@ -119,7 +120,7 @@ Currently you can change:
   * Native image crop (able to crop high-resolution images, e.g. 16MP & 32MP images on Nexus 5X).
   * WebP compression format is not supported at the moment (choose JPEG or PNG).
   * Now library copies EXIF data to cropped image (size and orientation are updated).
-  
+
 ### Version: 1.5
 
   * Introduced "Freestyle" crop (you can resize crop rectangle by dragging it corners) [#32](https://github.com/Yalantis/uCrop/issues/32)
@@ -141,7 +142,7 @@ Currently you can change:
   * Improved EXIF data support (rotation and mirror).
   * Small UI updates.
   * Couple new things to configure.
-  
+
   * Sample updated with possibility to choose custom aspect ratio.
 
 ### Version: 1.2
@@ -158,7 +159,7 @@ Currently you can change:
 
 ### Let us know!
 
-We’d be really happy if you sent us links to your projects where you use our component. Just send an email to github@yalantis.com And do let us know if you have any questions or suggestion regarding the library. 
+We’d be really happy if you sent us links to your projects where you use our component. Just send an email to github@yalantis.com And do let us know if you have any questions or suggestion regarding the library.
 
 #### Apps using uCrop
 
