@@ -6,7 +6,6 @@ import android.graphics.RectF;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -136,9 +135,7 @@ public class BitmapCropTask extends AsyncTask<Void, Void, Throwable> {
         mCroppedImageWidth = Math.round(mCropRect.width() / mCurrentScale);
         mCroppedImageHeight = Math.round(mCropRect.height() / mCurrentScale);
 
-        // always crop images taken on Samsung devices as they lose their exif data otherwise
-        boolean isSamsungDevice = (Build.MANUFACTURER.toLowerCase().equals("samsung"));
-        boolean shouldCrop = isSamsungDevice || shouldCrop(mCroppedImageWidth, mCroppedImageHeight);
+        boolean shouldCrop = shouldCrop(mCroppedImageWidth, mCroppedImageHeight);
         Log.i(TAG, "Should crop: " + shouldCrop);
 
         if (shouldCrop) {
