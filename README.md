@@ -2,7 +2,6 @@
 
 * Left align tool bar title instead of centering it
 * Renamed "Edit Photo" to "Prepare photo"
-* Fix Exif bug on Samsung devices
 
 #### [How We Created uCrop](https://yalantis.com/blog/how-we-created-ucrop-our-own-image-cropping-library-for-android/)
 #### Check this [project on Dribbble](https://dribbble.com/shots/2484752-uCrop-Image-Cropping-Library)
