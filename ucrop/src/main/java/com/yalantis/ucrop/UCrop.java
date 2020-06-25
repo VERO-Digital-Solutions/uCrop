@@ -1,27 +1,27 @@
 package com.yalantis.ucrop;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.annotation.ColorInt;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.FloatRange;
-import android.support.annotation.IntRange;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import com.yalantis.ucrop.model.AspectRatio;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.FloatRange;
+import androidx.annotation.IntRange;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 /**
  * Created by Oleksii Shliama (https://github.com/shliama).
@@ -148,32 +148,12 @@ public class UCrop {
     }
 
     /**
-     * Send the crop Intent from a support library Fragment
-     *
-     * @param fragment Fragment to receive result
-     */
-    public void start(@NonNull Context context, @NonNull android.support.v4.app.Fragment fragment) {
-        start(context, fragment, REQUEST_CROP);
-    }
-
-    /**
      * Send the crop Intent with a custom request code
      *
      * @param fragment    Fragment to receive result
      * @param requestCode requestCode for result
      */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void start(@NonNull Context context, @NonNull Fragment fragment, int requestCode) {
-        fragment.startActivityForResult(getIntent(context), requestCode);
-    }
-
-    /**
-     * Send the crop Intent with a custom request code
-     *
-     * @param fragment    Fragment to receive result
-     * @param requestCode requestCode for result
-     */
-    public void start(@NonNull Context context, @NonNull android.support.v4.app.Fragment fragment, int requestCode) {
         fragment.startActivityForResult(getIntent(context), requestCode);
     }
 
@@ -237,7 +217,7 @@ public class UCrop {
      * @return aspect ratio as a floating point value (x:y) - so it will be 1 for 1:1 or 4/3 for 4:3
      */
     public static float getOutputCropAspectRatio(@NonNull Intent intent) {
-        return intent.getParcelableExtra(EXTRA_OUTPUT_CROP_ASPECT_RATIO);
+        return intent.getFloatExtra(EXTRA_OUTPUT_CROP_ASPECT_RATIO, 0f);
     }
 
     /**
@@ -250,7 +230,6 @@ public class UCrop {
     public static Throwable getError(@NonNull Intent result) {
         return (Throwable) result.getSerializableExtra(EXTRA_ERROR);
     }
-
 
     /**
      * Class that helps to setup advanced configs that are not commonly used.
@@ -282,7 +261,7 @@ public class UCrop {
 
         public static final String EXTRA_TOOL_BAR_COLOR = EXTRA_PREFIX + ".ToolbarColor";
         public static final String EXTRA_STATUS_BAR_COLOR = EXTRA_PREFIX + ".StatusBarColor";
-        public static final String EXTRA_UCROP_COLOR_WIDGET_ACTIVE = EXTRA_PREFIX + ".UcropColorWidgetActive";
+        public static final String EXTRA_UCROP_COLOR_CONTROLS_WIDGET_ACTIVE = EXTRA_PREFIX + ".UcropColorControlsWidgetActive";
 
         public static final String EXTRA_UCROP_WIDGET_COLOR_TOOLBAR = EXTRA_PREFIX + ".UcropToolbarWidgetColor";
         public static final String EXTRA_UCROP_TITLE_TEXT_TOOLBAR = EXTRA_PREFIX + ".UcropToolbarTitleText";
@@ -446,10 +425,10 @@ public class UCrop {
         }
 
         /**
-         * @param color - desired resolved color of the active and selected widget (default is orange) and progress wheel middle line
+         * @param color - desired resolved color of the active and selected widget and progress wheel middle line (default is white)
          */
-        public void setActiveWidgetColor(@ColorInt int color) {
-            mOptionBundle.putInt(EXTRA_UCROP_COLOR_WIDGET_ACTIVE, color);
+        public void setActiveControlsWidgetColor(@ColorInt int color) {
+            mOptionBundle.putInt(EXTRA_UCROP_COLOR_CONTROLS_WIDGET_ACTIVE, color);
         }
 
         /**
