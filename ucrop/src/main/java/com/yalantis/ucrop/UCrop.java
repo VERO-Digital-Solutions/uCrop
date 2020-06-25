@@ -1,10 +1,13 @@
 package com.yalantis.ucrop;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 
@@ -20,8 +23,6 @@ import androidx.annotation.FloatRange;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 /**
  * Created by Oleksii Shliama (https://github.com/shliama).
@@ -148,12 +149,32 @@ public class UCrop {
     }
 
     /**
+     * Send the crop Intent from a support library Fragment
+     *
+     * @param fragment Fragment to receive result
+     */
+    public void start(@NonNull Context context, @NonNull androidx.fragment.app.Fragment fragment) {
+        start(context, fragment, REQUEST_CROP);
+    }
+
+    /**
      * Send the crop Intent with a custom request code
      *
      * @param fragment    Fragment to receive result
      * @param requestCode requestCode for result
      */
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void start(@NonNull Context context, @NonNull Fragment fragment, int requestCode) {
+        fragment.startActivityForResult(getIntent(context), requestCode);
+    }
+
+    /**
+     * Send the crop Intent with a custom request code
+     *
+     * @param fragment    Fragment to receive result
+     * @param requestCode requestCode for result
+     */
+    public void start(@NonNull Context context, @NonNull androidx.fragment.app.Fragment fragment, int requestCode) {
         fragment.startActivityForResult(getIntent(context), requestCode);
     }
 
@@ -257,6 +278,7 @@ public class UCrop {
         public static final String EXTRA_CROP_GRID_ROW_COUNT = EXTRA_PREFIX + ".CropGridRowCount";
         public static final String EXTRA_CROP_GRID_COLUMN_COUNT = EXTRA_PREFIX + ".CropGridColumnCount";
         public static final String EXTRA_CROP_GRID_COLOR = EXTRA_PREFIX + ".CropGridColor";
+        public static final String EXTRA_CROP_GRID_CORNER_COLOR = EXTRA_PREFIX + ".CropGridCornerColor";
         public static final String EXTRA_CROP_GRID_STROKE_WIDTH = EXTRA_PREFIX + ".CropGridStrokeWidth";
 
         public static final String EXTRA_TOOL_BAR_COLOR = EXTRA_PREFIX + ".ToolbarColor";
@@ -401,6 +423,13 @@ public class UCrop {
          */
         public void setCropGridColor(@ColorInt int color) {
             mOptionBundle.putInt(EXTRA_CROP_GRID_COLOR, color);
+        }
+
+        /**
+         * @param color - desired color of crop grid/guidelines corner
+         */
+        public void setCropGridCornerColor(@ColorInt int color) {
+            mOptionBundle.putInt(EXTRA_CROP_GRID_CORNER_COLOR, color);
         }
 
         /**

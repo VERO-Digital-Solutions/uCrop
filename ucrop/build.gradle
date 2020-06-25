@@ -8,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 28
-        versionCode 25
-        versionName "2.2.5-non-native"
+        versionCode 26
+        versionName "2.2.5-native"
 
         vectorDrawables.useSupportLibrary = true
     }
@@ -28,6 +28,10 @@ android {
     }
 
     resourcePrefix 'ucrop_'
+
+    sourceSets.main {
+        jni.srcDirs = []
+    }
 
 }
 
