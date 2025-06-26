@@ -24,8 +24,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yalantis.ucrop.callback.BitmapCropCallback;
+import com.yalantis.ucrop.databinding.UcropActivityPhotoboxBinding;
 import com.yalantis.ucrop.model.AspectRatio;
 import com.yalantis.ucrop.util.SelectedStateListDrawable;
 import com.yalantis.ucrop.view.CropImageView;
@@ -123,8 +125,8 @@ public class UCropActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ucrop_activity_photobox);
-
+        UcropActivityPhotoboxBinding binding = UcropActivityPhotoboxBinding.inflate(getLayoutInflater());
+        ActivityExKt.adjustEdgeToEdge(this, binding.getRoot(), true);
         final Intent intent = getIntent();
 
         setupViews(intent);

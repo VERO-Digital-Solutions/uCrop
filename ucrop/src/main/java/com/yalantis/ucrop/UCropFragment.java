@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yalantis.ucrop.callback.BitmapCropCallback;
 import com.yalantis.ucrop.model.AspectRatio;
@@ -125,7 +126,7 @@ public class UCropFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.ucrop_fragment_photobox, container, false);
-
+        View adjusted = ActivityExKt.adjustEdgeToEdge(requireActivity(), rootView, false);
         Bundle args = getArguments();
 
         setupViews(rootView, args);
@@ -133,7 +134,7 @@ public class UCropFragment extends Fragment {
         setInitialState();
         addBlockingView(rootView);
 
-        return rootView;
+        return adjusted;
     }
 
 
